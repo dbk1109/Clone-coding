@@ -1,0 +1,166 @@
+/* COMMON */
+body {
+  color: #333;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.4;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+img {
+  display: block;
+}
+
+a {
+  text-decoration: none;
+}
+
+.inner {
+  width: 1100px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* HEADER */
+header {
+  background-color: #f6f5f0;
+  border-bottom: 1px solid #c8c8c8;
+
+  >.inner {
+    height: 120px;
+  }
+
+  .logo {
+    height: 75px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+  }
+
+  .sub-menu {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    display: flex;
+
+    ul.menu {
+      display: flex;
+      font-family: Arial, Helvetica, sans-serif;
+
+      li {
+        position: relative;
+
+        &:not(:first-child)::before {
+          content: "";
+          //display: block; absolute로 변경해서 필요없어짐
+          width: 1px;
+          height: 12px;
+          background-color: #e5e5e5;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          margin: auto;
+        }
+
+        a {
+          font-size: 12px;
+          padding: 11px 16px; //a태그는 기본적으로 인라인요소이기 때문에 내부여백x
+          display: block;
+          color: #656565;
+
+          &:hover {
+            color: #000;
+          }
+        }
+      }
+    }
+
+    .search {
+      height: 34px;
+      position: relative;
+
+      input {
+        width: 36px;
+        height: 34px;
+        padding: 4px 10px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        border-radius: 5px;
+        outline: none;
+        background-color: #fff;
+        color: #777;
+        font-size: 12px;
+        transition: width .4s;
+
+        &:focus {
+          width: 190px;
+          border-color: #669900;
+        }
+      }
+
+      .material-icons {
+        height: 24px; //google 제공 기본 사이즈. absolute는 값이 필요함
+        position: absolute;
+        top: 0;
+        right: 5px;
+        bottom: 0;
+        margin: auto;
+        transition: .4s;
+      }
+
+      &.focused {
+        .material-icons {
+          opacity: 0;
+        }
+      }
+
+    }
+
+  }
+
+  .main-menu {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    display: flex;
+
+    .item {
+      .item__name {
+        padding: 10px 20px 34px 20px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+      }
+
+      .item__contents {
+        width: 100%;
+        position: fixed;
+        left: 0;
+        display: none;
+
+        .contents__menu {
+          background-color: red;
+          height: 200px;
+        }
+
+        .contents__texture {
+          background-color: orange;
+          height: 100px;
+        }
+      }
+
+      &:hover {
+        .item__name {
+          background-color: #2c2a29;
+          color: #669900;
+          border-radius: 6px 6px 0 0;
+        }
+
+        .item__contents {
+          display: block;
+        }
+      }
+    }
+  }
+}
