@@ -86,3 +86,20 @@ promotionToggleBtn.addEventListener('click', function () {
     promotionEl.classList.remove('hide');
   }
 })
+
+function random(min, max) {
+  return parseFloat( (Math.random() * (max-min) + min).toFixed(2) )
+}
+
+function floatingObj(selector, delay, size) {
+  gsap.to(selector, 1, {
+    y: size,
+    repeat: -1,
+    yoyo: true,
+    ease: Power1.easeInOut,
+    delay: random(0, delay)
+  });
+}
+floatingObj('.floating--1', 1, 15);
+floatingObj('.floating--2', .5, 15);
+floatingObj('.floating--3', 1.5, 20);
