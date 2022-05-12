@@ -16,6 +16,7 @@ searchInputEl.addEventListener('blur', function () {
 });
 
 const badgeEl = document.querySelector('header .badges');
+const toTopEl = document.querySelector('#toTop');
 
 window.addEventListener('scroll', _.throttle(function () {
   //원래는 window.screenY를 사용했지만 듀얼모니터의 경우때문에 pageYOffset를 사용함
@@ -26,16 +27,29 @@ window.addEventListener('scroll', _.throttle(function () {
     gsap.to(badgeEl, .6, {
       opacity: 0,
       display: 'none'
-    })
+    });
+    //버튼 보이기
+    gsap.to(toTopEl, .2, {
+      x: 0
+    });
   } else {
     //badgeEl.style.display = 'block';
     gsap.to(badgeEl, .6, {
       opacity: 1,
       display: 'block'
-    })
+    });
+    //버튼 숨기기
+    gsap.to(toTopEl, .2, {
+      x: 100
+    });
   }
 }, 300));
 
+toTopEl.addEventListener('click', function () {
+  gsap.to(window, .7, {
+    scrollTo: 0
+  });
+});
 // fade-in animation
 
 const fadeEls = document.querySelectorAll('.visual .fade-in');
@@ -70,8 +84,18 @@ new Swiper('.promotion .swiper-container', {
     prevEl: '.promotion .swiper-prev',
     nextEl: '.promotion .swiper-next'
   }
-})
+});
 
+new Swiper('.awards .swiper-container', {
+  autoplay: true,
+  loop: true,
+  spaceBetween: 30,
+  slidesPerView: 5,
+  navigation: {
+    prevEl: '.awards .swiper-prev',
+    nextEl: '.awards .swiper-next'
+  }
+});
 
 const promotionEl = document.querySelector('.promotion');
 const promotionToggleBtn = document.querySelector('.toggle-promotion');
@@ -106,5 +130,15 @@ floatingObj('.floating--3', 1.5, 20);
 
 const spyEls = document.querySelectorAll('section.scroll-spy');
 spyEls.forEach(function (spyEl) {
-  new ScrollMagic.Scene()
+  new ScrollMagic
+    .Scene({
+      triggerElement: spyEl, //보여짐 여부를 감ㅣ할 요
+      triggerHook: .8
+    })
+    .setClassToggle(spyEl, 'show')
+    .setClassToggle(spyEl, 'show')
+    .addTo(new ScrollMagic.Controller());
 });
+
+const thisYear = document.querySelector('.thisYear');
+thisYear.textContent = new Date().getFullYear();

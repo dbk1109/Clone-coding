@@ -14,7 +14,7 @@ function onYouTubeIframeAPIReady() {
     playerVars: {
       autoplay: true,
       loop: true,
-      playlist: 'BcUVLce3TOU' // 반복 재생할 유투브 영상 아이디
+      playlist: 'BcUVLce3TOU', // 반복 재생할 유투브 영상 아이디
     },
     events: {
       onReady: function (event) {
